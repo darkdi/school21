@@ -1,72 +1,110 @@
-//ex00 succas
 //#include <stdio.h>
-//void ft_putchar(char c)
-//{
-//    write(1, &c, 1);
-//}
 //
-//
-//void    ft_putstr(char *str)
+//int        nmatch(char *s1, char *s2)
 //{
-//      while (*str != 0)
-//          ft_putchar(*str++);
-//}
-//
-//int main(){
-//    ft_putstr("TEST");
-//    ft_putstr("\n");
-//  return (0);
-//}
-
-//ex01 succas
-// #include <unistd.h>
-// void   ft_putchar(char c)
-// {
-//   write(1 , &c, 1);
-// }
-// void   ft_putnbr(int nb)
-// {
-//     if (nb < 0)
-//     {
-//         ft_putchar('-');
-//         if (nb <= -10)
-//             ft_putnbr(nb / -10);
-//         ft_putchar(-(nb % 10) + '0');
-//     }
-//     else if (nb >= 10)
-//     {
-//         ft_putnbr(nb / 10);
-//         ft_putchar((nb % 10) + '0');
-//     }
-//     else
-//         ft_putchar(nb + '0');
-// }
-//
-// int main()
-// {
-//   ft_putnbr(-2147483648);
-//   return (0);
-// }
-
-
-//ex01 test
-//#include <unistd.h>
-//void ft_putchar(char c)
-//{
-//  write(1 , &c, 1);
-//}
-//void    ft_putstr(int str)
-//{
-//    while (str)
+//    if (*s1 == '\0' && *s2 == '\0')
+//        return (1);
+//    else if (*s2 == '*')
 //    {
-//        ft_putchar(str);
-//        str++;
+//        if (*s1 == '\0')
+//            return (nmatch(s1, s2 + 1));
+//        else
+//            return (nmatch(s1 + 1, s2) + nmatch(s1, s2 + 1));
 //    }
+//    else if (*s2 == *s1)
+//        return (nmatch(s1 + 1, s2 + 1));
+//    else
+//        return (0);
 //}
-//int main()
+//NOOOOR
+//int    match(char *s1, char *s2)
 //{
-//    int n=42;
-//
-//    ft_putnbr(n);
+//  if (*s1 != '\0' && *s2 == '*')
+//    return (match(s1 + 1, s2) || match(s1, s2 + 1));
+//  if (*s1 == '\0' && *s2 == '*')
+//    return (match(s1, s2 + 1));
+//  if (*s1 == *s2 && *s1 != '\0' && *s2 != '\0')
+//    return (match(s1 + 1, s2 + 1));
+//  if (*s1 == *s2 && *s1 == '\0' && *s2 == '\0')
+//    return (1);
 //  return (0);
 //}
+//
+//int    nmatch(char *s1, char *s2)
+//{
+//  if (*s1 != '\0' && *s2 == '*')
+//    return (nmatch(s1 + 1, s2) + nmatch(s1, s2 + 1));
+//  if (*s1 == '\0' && *s2 == '*')
+//    return (nmatch(s1, s2 + 1));
+//  if (*s1 == *s2 && *s1 != '\0' && *s2 != '\0')
+//    return (nmatch(s1 + 1, s2 + 1));
+//  if (*s1 == *s2 && *s1 == '\0' && *s2 == '\0')
+//    return (1);
+//  return (0);
+//}
+
+//NOOOOR2
+//int    nmatch(char *s1, char *s2)
+//{
+//  if (*s1 != '\0' && *s2 == '*')
+//    return (nmatch(s1 + 1, s2) + nmatch(s1, s2 + 1));
+//  else if (*s1 == '\0' && *s2 == '*')
+//    return (nmatch(s1, s2 + 1));
+//  else if (*s1 == *s2 && *s1 != '\0' && *s2 != '\0')
+//    return (nmatch(s1 + 1, s2 + 1));
+//  else if (*s1 == *s2 && *s1 == '\0' && *s2 == '\0')
+//    return (1);
+//  return (0);
+//}
+int    nmatch(char *s1, char *s2)
+{
+  if (*s1 && *s2 == '*')
+    return (nmatch(s1 + 1, s2) + nmatch(s1, s2 + 1));
+  else if (*s1 && *s2 && *s1 == *s2)
+    return (nmatch(s1 + 1, s2 + 1));
+  else if (!(*s1) && *s2 == '*')
+    return (nmatch(s1, s2 + 1));
+  else if (!(*s1) && !(*s2))
+    return (1);
+  return (0);
+}
+
+
+//int    nmatch(char *s1, char *s2)
+//{
+//    if (*s1 == '\0' && *s2 == '*')
+//        return (nmatch(s1, s2 + 1));
+//    if (*s1 != '\0' && *s2 == '*')
+//        return ((nmatch(s1 + 1, s2)) + (nmatch(s1, s2 + 1)));
+//    if (*s1 == *s2 && *s2 != '\0')
+//        return (nmatch(s1 + 1, s2 + 1));
+//    if (*s1 == '\0' && *s2 == '\0')
+//        return (1);
+//    return (0);
+//}
+
+
+//
+//int        nmatch(char *s1, char *s2)
+//{
+//    if (!*s1 && !*s2)
+//        return (1);
+//    else if (*s2 == '*')
+//    {
+//        if (!*s1)
+//            return (nmatch(s1, s2 + 1));
+//        else
+//            return (nmatch(s1 + 1, s2) + nmatch(s1, s2 + 1));
+//    }
+//    else if (*s1 == *s2)
+//        return (nmatch(s1 + 1, s2 + 1));
+//    else
+//        return (0);
+//}
+
+int        main(void)
+{
+    printf("%i\n", nmatch("test", "test"));
+    printf("%i\n", nmatch("abcbd", "*4*"));
+    printf("%i\n", nmatch("abc", "a**"));
+}
