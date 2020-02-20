@@ -1,5 +1,5 @@
 //#include <stdio.h>
-//
+// TEST prod
 //int        nmatch(char *s1, char *s2)
 //{
 //    if (*s1 == '\0' && *s2 == '\0')
@@ -101,7 +101,7 @@ int    nmatch(char *s1, char *s2)
 //    else
 //        return (0);
 //}
-
+TEST prod
 int        main(void)
 {
     printf("%i\n", nmatch("test", "test"));
