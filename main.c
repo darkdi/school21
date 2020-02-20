@@ -1,4 +1,4 @@
-iz dev
+2iz dev
 //#include <stdio.h>
 //
 //int        nmatch(char *s1, char *s2)
